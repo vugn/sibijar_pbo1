@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.sibijar.admin.Admin;
 import com.sibijar.features.category.CategoryManager;
+import com.sibijar.features.course_program.CourseProgramManager;
 import com.sibijar.features.information.InformationManager;
 import com.sibijar.service.auth.AuthManager;
 import com.sibijar.service.database.DatabaseManager;
@@ -18,6 +19,7 @@ public class InitApp {
     private Admin admin;
     private CategoryManager categoryManager;
     private InformationManager informationManager;
+    private CourseProgramManager courseProgramManager;
     private boolean isAuthenticated = false;
 
     public InitApp() throws SQLException, IOException {
@@ -59,6 +61,7 @@ public class InitApp {
         // Create a new CategoryManager object
         categoryManager = new CategoryManager(admin, databaseManager);
         informationManager = new InformationManager(admin, databaseManager, categoryManager);
+        courseProgramManager = new CourseProgramManager(admin, databaseManager);
     }
 
     public void run() {
@@ -67,7 +70,7 @@ public class InitApp {
             return;
         }
 
-        Menu menu = new Menu(categoryManager, informationManager);
+        Menu menu = new Menu(categoryManager, informationManager, courseProgramManager);
         menu.display();
     }
 }

@@ -17,12 +17,12 @@ public class CategoryManager {
         this.dbManager = dbManager;
     }
 
-    public void addCategory(int id_kategori, String nm_kategori) {
+    public void addCategory(String nm_kategori) {
         if (isAdmin()) {
             if (nm_kategori != null && !nm_kategori.trim().isEmpty()) {
-                String sql = "INSERT INTO kategori (id_kategori, nm_kategori, id_admin) VALUES (?, ?, ?)";
+                String sql = "INSERT INTO kategori ( nm_kategori, id_admin) VALUES (?, ?)";
                 try {
-                    dbManager.executeUpdate(sql, id_kategori, nm_kategori, admin.getId_admin());
+                    dbManager.executeUpdate(sql, nm_kategori, admin.getId_admin());
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
