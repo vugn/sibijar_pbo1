@@ -1,4 +1,4 @@
-package com.sibijar.category;
+package com.sibijar.features.category;
 
 import com.sibijar.admin.Admin;
 
